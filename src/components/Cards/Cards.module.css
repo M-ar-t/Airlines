@@ -1,0 +1,15 @@
+.btn{
+    padding: 0px 50px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.notFound{
+    padding: 40px;
+    font-size: 18px;
+}

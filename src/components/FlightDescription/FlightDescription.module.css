@@ -1,0 +1,60 @@
+.direction{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border-bottom: 1px solid rgb(229, 220, 220);
+}
+
+.uid{
+   color: #0087c9;
+   margin-left: 5px;
+}
+
+.timeInfo{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px;
+}
+
+.hour{
+    font-size: 16px;
+    margin-right: 5px;
+}
+.amountHours{
+    display: flex;
+    align-items: center;
+}
+
+.date{
+color: #0087c9;
+margin-right: 5px;
+}
+.upper{
+    text-transform: uppercase;
+}
+.normal{
+    text-transform: capitalize;
+}
+.oneConnection{
+    position: absolute;
+    top:0px;
+    color: #ffb168;
+    padding: 0px 10px;
+    background-color: white;
+    font-size: 14px;
+}
+.decor{
+    height: 1.5px;
+    width: 400px;
+    background-color: rgb(184, 190, 190);
+    margin: 10px 0px 20px;
+}
+.oneConnectionDiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.carrier{
+    padding: 0px 7px 7px;
+}

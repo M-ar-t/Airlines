@@ -1,0 +1,34 @@
+.main{
+    margin-bottom: 25px;
+    width: 550px
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #0087c9;
+    color: white;
+}
+
+.priceBlok{
+    text-align: end;
+}
+.priceValue{
+font-size: 22px;
+
+}
+.priceDescription{
+    font-size: 12px;
+}
+.flightDescFirst{
+    border-bottom: #0087c9 solid 2px;
+}
+.chooseBtn{
+    background-color: #ffb168;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    padding: 7px;
+    width: 100%;
+    font-weight: normal;
+}
