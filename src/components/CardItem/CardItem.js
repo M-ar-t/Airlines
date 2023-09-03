@@ -19,7 +19,6 @@ function CardItem(props) {
       </div>
       <div className={s.flightDescFirst}>
         <FlightDescription
-
           departureCity={props.departureCity}
           departureAirport={props.departureAirport}
           departureAirportUid={props.departureAirportUid}
@@ -33,7 +32,6 @@ function CardItem(props) {
         />
       </div>
       <FlightDescription
-
         departureCity={props.returnDepartureCity}
         departureAirport={props.returnDepartureAirport}
         departureAirportUid={props.returnDepartureAirportUid}

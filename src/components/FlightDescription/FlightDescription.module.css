@@ -58,3 +58,15 @@ margin-right: 5px;
 .carrier{
     padding: 0px 7px 7px;
 }
+
+@media screen and (max-width:500px){
+    .direction,.hour,
+    .oneConnection, .carrier,
+    .date{
+        font-size: 12px;
+    }
+
+    .decor{
+        width: 200px;
+    }
+}

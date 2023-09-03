@@ -4,22 +4,24 @@ import initialData from "../flights.json";
 const initialState = {
   data: initialData.result.flights,
   processData: [],
-  sort: "increase",
+  sort: "ascending",
   filter: { chekDirect: true, chekOneConnection: true },
   minPrice: 0,
-  maxPrice: 1000000,
+  maxPrice: Infinity,
   company: {
-    AF: false,
-    AY: false,
-    AZ: false,
-    BT: false,
-    KL: false,
-    LO: false,
-    PC: false,
-    SN: false,
-    SU1:false,
-    TK: false,
+    AF: true,
+    AY: true,
+    AZ: true,
+    BT: true,
+    KL: true,
+    LO: true,
+    PC: true,
+    SN: true,
+    SU1: true,
+    TK: true,
   },
+  allCompany: true,
+  disabledCompany: [],
 };
 
 export const mainReducer = createSlice({
@@ -27,7 +29,7 @@ export const mainReducer = createSlice({
   initialState: initialState,
   reducers: {
     setSort(state, { payload }) {
-      state.sort = payload.sort;
+      state.sort = payload;
     },
     setFilter(state, { payload }) {
       state.filter = {
@@ -39,11 +41,16 @@ export const mainReducer = createSlice({
       state.minPrice = payload ? payload : 0;
     },
     setMaxPrice(state, { payload }) {
-      state.maxPrice = payload ? payload : 100000;
+      state.maxPrice = payload ? payload : Infinity;
     },
     setCompany(state, { payload }) {
-      console.log('payload = ', state.company[payload]);
-      state.company[payload] = !state.company[payload] ;
+      state.company[payload] = !state.company[payload];
+    },
+    setAllCompany(state, { payload }) {
+      for (let key in state.company) {
+        state.company[key] = payload;
+      }
+      state.allCompany = payload;
     },
 
     process(state, actions) {
@@ -74,6 +81,27 @@ export const mainReducer = createSlice({
         (item) => state.company[item.flight.carrier.uid] === true
       );
 
+      switch (state.sort) {
+        case "descending":
+          filteredData.sort(
+            (a, b) => b.flight.price.total.amount - a.flight.price.total.amount
+          );
+          break;
+        case "duration":
+          filteredData.sort(
+            (a, b) =>
+              a.flight.legs[0].duration +
+              a.flight.legs[1].duration -
+              (b.flight.legs[0].duration + b.flight.legs[1].duration)
+          );
+          break;
+
+        default:
+          filteredData.sort(
+            (a, b) => a.flight.price.total.amount - b.flight.price.total.amount
+          );
+          break;
+      }
       state.processData = filteredData;
     },
   },
@@ -86,9 +114,13 @@ export const {
   setMaxPrice,
   setCompany,
   process,
+  setAllCompany,
 } = mainReducer.actions;
 
 export default mainReducer.reducer;
 
 export const selectAllFlights = (store) => store.mainReducer.data;
 export const selectProcessFlights = (store) => store.mainReducer.processData;
+export const isAllCompany = (store) => store.mainReducer.allCompany;
+export const selectCompany = (store) => store.mainReducer.company;
+export const selectSort = (store) => store.mainReducer.sort;

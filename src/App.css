@@ -1,8 +1,14 @@
-.main{
+.main {
   padding: 20px;
   display: flex;
-  gap: 60px;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 0 auto;
 }
-h4{
+h4 {
   margin-bottom: 10px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
 }

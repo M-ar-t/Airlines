@@ -52,7 +52,7 @@ function FlightDescription({
   const getDifference = (departureDate, arrivalDate) => {
     var timeStart = new Date(departureDate).getTime();
     var timeEnd = new Date(arrivalDate).getTime();
-    var hourDiff = timeEnd - timeStart; 
+    var hourDiff = timeEnd - timeStart;
     var minDiff = hourDiff / 60 / 1000;
     var hDiff = hourDiff / 3600 / 1000;
     var humanReadable = {};
@@ -69,7 +69,7 @@ function FlightDescription({
     <div>
       <div className={s.direction}>
         <div>
-          <span  className={s.normal}>{departureCity?.toLowerCase()}, </span>
+          <span className={s.normal}>{departureCity?.toLowerCase()}, </span>
           <span className={s.upper}>{departureAirport?.toLowerCase()}</span>
           <span className={s.uid}>({departureAirportUid})</span>
         </div>

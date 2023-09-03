@@ -1,42 +1,60 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { process, setCompany } from "../../store/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  isAllCompany,
+  process,
+  selectCompany,
+  setAllCompany,
+  setCompany,
+} from "../../store/reducer";
 
 function AviaCompany({ data }) {
-  // const [checkedCompany, setCheckedCompany] = useState(null);
-
   const dispatch = useDispatch();
-  // data.map((item) => checkedCompany[item.flight.carrier.uid] = false);
-
-  // console.log(checkedCompany);
+  const [changeAll, setChangeAll] = useState(true);
+  const isAll = useSelector(isAllCompany);
+  const company = useSelector(selectCompany);
   const uniqCaptopns = [
     ...new Set(data.map((item) => item.flight.carrier.uid)),
   ];
 
-  
   return (
     <div>
       <h4>Авиакомпании</h4>
       {uniqCaptopns.map((item, i) => {
-        const caption = data.find(el => el.flight.carrier.uid===item).flight.carrier.caption
-        return(
+        const caption = data.find((el) => el.flight.carrier.uid === item).flight
+          .carrier.caption;
+        return (
           <div key={item}>
             <input
+              checked={isAll ? true : company[item]}
               type="checkbox"
               id={item}
               name={item}
               onChange={() => {
-                // const arr = checkedCompany
-                // arr[item] =  !arr[item]
-                // setCheckedCompany(item)
+                setChangeAll(false)
+                isAll && dispatch(setAllCompany(false));
                 dispatch(setCompany(item));
                 dispatch(process());
+                
               }}
             />
             <label htmlFor={item}>- {caption}</label>
           </div>
-        )
+        );
       })}
+      <br />
+      <input
+        type="checkbox"
+        id="all"
+        name="all"
+        checked={changeAll}
+        onChange={() => {
+          dispatch(setAllCompany(!changeAll));
+          dispatch(process());
+          setChangeAll(!changeAll);
+        }}
+      />
+      <label htmlFor="all"> выбрать все</label>
     </div>
   );
 }

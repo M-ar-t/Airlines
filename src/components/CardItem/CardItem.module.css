@@ -1,6 +1,5 @@
 .main{
     margin-bottom: 25px;
-    width: 550px
 }
 .header{
     display: flex;
@@ -31,4 +30,9 @@ font-size: 22px;
     padding: 7px;
     width: 100%;
     font-weight: normal;
+}
+.chooseBtn:hover{
+    cursor: pointer;
+    background-color: #f5aa64;
+   
 }

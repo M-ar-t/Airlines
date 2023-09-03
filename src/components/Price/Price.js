@@ -7,7 +7,7 @@ function Price(props) {
   const dispatch = useDispatch();
 
   const [min, setMin] = useState(0);
-  const [max, setMax] = useState(1000000);
+  const [max, setMax] = useState(Infinity);
 
   useEffect(() => {
     dispatch(setMinPrice(min));

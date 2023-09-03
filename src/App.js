@@ -7,12 +7,13 @@ import { useSelector } from "react-redux";
 function App() {
   const processFlights = useSelector(selectProcessFlights);
   const allFlights = useSelector(selectAllFlights);
-  // console.log("new flights = ", flights);
 
   return (
-    <div className="main">
-      <FilterComponent data ={allFlights}/>
-      <Cards data={processFlights} />
+    <div className="wrapper">
+      <div className="main">
+        <FilterComponent data={allFlights} />
+        <Cards data={processFlights} />
+      </div>
     </div>
   );
 }
