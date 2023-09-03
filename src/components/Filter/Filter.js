@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { process, setFilter } from "../../store/reducer";
+import { process, setDisabledCompany, setFilter } from "../../store/reducer";
 import { useDispatch } from "react-redux";
 
 function Filter() {
@@ -9,9 +9,9 @@ function Filter() {
 
   useEffect(() => {
     dispatch(setFilter({ chekDirect, chekOneConnection }));
-    dispatch(process())
+    dispatch(setDisabledCompany());
+    dispatch(process());
   }, [chekDirect, chekOneConnection, dispatch]);
-
 
   return (
     <div>

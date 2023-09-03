@@ -52,6 +52,32 @@ export const mainReducer = createSlice({
       }
       state.allCompany = payload;
     },
+    setDisabledCompany(state, { payload }) {
+      state.disabledCompany = [];
+
+      for (let key in state.company) {
+        let disabledItem = false;
+        let currentCompanyData = state.data.filter(
+          (el) => el.flight.carrier.uid === key
+        );
+        if (state.filter.chekDirect && !state.filter.chekOneConnection) {
+          disabledItem = currentCompanyData.some(
+            (item) =>
+              item.flight.legs[0].segments.length === 1 &&
+              item.flight.legs[1].segments.length === 1
+          );
+        } else if (state.filter.chekOneConnection && !state.filter.chekDirect) {
+          disabledItem = currentCompanyData.some(
+            (item) =>
+              item.flight.legs[0].segments.length === 2 &&
+              item.flight.legs[1].segments.length === 2
+          );
+        } else {
+          disabledItem = true;
+        }
+        !disabledItem && state.disabledCompany.push(key);
+      }
+    },
 
     process(state, actions) {
       let filteredData;
@@ -115,6 +141,7 @@ export const {
   setCompany,
   process,
   setAllCompany,
+  setDisabledCompany,
 } = mainReducer.actions;
 
 export default mainReducer.reducer;
@@ -124,3 +151,5 @@ export const selectProcessFlights = (store) => store.mainReducer.processData;
 export const isAllCompany = (store) => store.mainReducer.allCompany;
 export const selectCompany = (store) => store.mainReducer.company;
 export const selectSort = (store) => store.mainReducer.sort;
+export const selectDisabledCompany = (store) =>
+  store.mainReducer.disabledCompany;

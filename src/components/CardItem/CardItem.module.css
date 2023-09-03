@@ -1,5 +1,6 @@
 .main{
     margin-bottom: 25px;
+    width:520px
 }
 .header{
     display: flex;
@@ -35,4 +36,10 @@ font-size: 22px;
     cursor: pointer;
     background-color: #f5aa64;
    
+}
+
+@media screen and (max-width:760px){
+    .main{
+        width:420px
+    }
 }

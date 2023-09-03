@@ -4,6 +4,7 @@ import {
   isAllCompany,
   process,
   selectCompany,
+  selectDisabledCompany,
   setAllCompany,
   setCompany,
 } from "../../store/reducer";
@@ -13,6 +14,8 @@ function AviaCompany({ data }) {
   const [changeAll, setChangeAll] = useState(true);
   const isAll = useSelector(isAllCompany);
   const company = useSelector(selectCompany);
+  const disabledCompany = useSelector(selectDisabledCompany);
+
   const uniqCaptopns = [
     ...new Set(data.map((item) => item.flight.carrier.uid)),
   ];
@@ -30,12 +33,12 @@ function AviaCompany({ data }) {
               type="checkbox"
               id={item}
               name={item}
+              disabled={disabledCompany.find((el) => el === item)}
               onChange={() => {
-                setChangeAll(false)
+                setChangeAll(false);
                 isAll && dispatch(setAllCompany(false));
                 dispatch(setCompany(item));
                 dispatch(process());
-                
               }}
             />
             <label htmlFor={item}>- {caption}</label>
